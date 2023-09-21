@@ -31,9 +31,9 @@ const resolvers = {
                 throw new AuthenticationError('Incorrect Login Info!');
             }
 
-            const vaildPw = await user.isCorrectPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
 
-            if (!vaildPw) {
+            if (!correctPw) {
                 throw new AuthenticationError('Incorrect Login Info!');
             }
 
@@ -44,13 +44,13 @@ const resolvers = {
 
         saveBook: async (parent, { bookData }, context) => {
             if (context.user) {
-                const userUpdate = await User.findByIdAndUpdate(
+                const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user._id},
                     { $push: { savedBooks: bookData } },
                     { new: true }
                 );
 
-                return userUpdate;
+                return updatedUser;
             }
 
             throw new AuthenticationError('Not logged In!');
@@ -58,13 +58,13 @@ const resolvers = {
 
         removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
-                const userUpdate = await User.findOneAndUpdate(
+                const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $pull: { savedBooks: { bookId } } },
                     { new: true }
                 );
 
-                return userUpdate;
+                return updatedUser;
             }
 
             throw new AuthenticationError('Not logged In!')
