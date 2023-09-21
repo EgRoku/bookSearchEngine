@@ -10,7 +10,7 @@ type User {
 }
 
 type Book {
-    bookID: ID!
+    bookId: ID!
     authors: [String]
     description: String
     image: String
@@ -24,7 +24,7 @@ type Auth {
 }
 
 input BookInput {
-    authors: [Sting]
+    authors: [String]
     description: String!
     bookId: String!
     image: String
@@ -32,7 +32,7 @@ input BookInput {
     title: String!
 }
 
-type Query: {
+type Query {
     me: User
 }
 
