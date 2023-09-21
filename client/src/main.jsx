@@ -18,11 +18,11 @@ const router = createBrowserRouter([
       }, {
         path: '/saved',
         element: <SavedBooks />
-      }
-    ]
-  }
-])
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
-)
+);
